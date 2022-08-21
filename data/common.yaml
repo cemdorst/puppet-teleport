@@ -1,0 +1,11 @@
+---
+teleport::node_type: 'node'
+teleport::config: '/etc/teleport.yaml'
+teleport::package_ensure: 'present'
+teleport::package_name: ['teleport']
+teleport::service_ensure: 'running'
+teleport::service_enable: true
+teleport::service_hasstatus: true
+teleport::service_hasrestart: true
+teleport::config_template: 'teleport/teleport_node.yaml.erb'
+teleport::service_ensure: 'running'
