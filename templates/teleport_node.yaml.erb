@@ -1,0 +1,30 @@
+version: v2
+teleport:
+  nodename: <%= @hostname -%>
+  data_dir: /var/lib/teleport
+  join_params:
+    token_name: <%= token -%>
+    method: token
+  auth_servers:
+  - <%= @auth_server -%>
+  log:
+    output: stderr
+    severity: INFO
+    format:
+      output: text
+  ca_pin: ""
+  diag_addr: 0.0.0.0:9130
+auth_service:
+  enabled: "no"
+ssh_service:
+  enabled: "yes"
+  labels:
+    env: <%= @environment -%>
+  commands:
+  - name: hostname
+    command: [hostname]
+    period: 1m0s
+proxy_service:
+  enabled: "no"
+  https_keypairs: []
+  acme: {}
