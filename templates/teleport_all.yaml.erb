@@ -1,0 +1,23 @@
+version: v2
+teleport:
+  nodename: <%= @hostname -%>
+  data_dir: /var/lib/teleport
+  join_params:
+    token_name: <%= @token -%>
+    method: token
+  auth_servers:
+  - <%= @auth_server -%>
+  log:
+    output: stderr
+    severity: INFO
+    format:
+      output: text
+  ca_pin: ""
+  diag_addr: 0.0.0.0:9130
+  storage:
+      type: <%= @storage_type -%>
+      project_id: <%= @project_id -%>
+      # Name of the Firestore table. If it does not exist, Teleport won't start
+      collection_name: <%= @collection_name -%>
+      audit_events_uri: ['file:///var/lib/teleport/audit/events', 'stdout://']
+      credentials_path: <%= @credentials_path -%>
